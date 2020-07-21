@@ -126,4 +126,4 @@ dmypy.json
 
 # * folder
 
-/retail-data-pipeline-env
+/retail-data-pipeline-env/*
