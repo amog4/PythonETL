@@ -17,22 +17,20 @@ DB_PASS_MYSQL = props[env]["DB_PASS_MYSQL"]
 DB_USER_POSTGRES = props.get(env,"DB_USER_POSTGRES")
 DB_PASS_POSTGRES = props.get(env,"DB_PASS_POSTGRES")
 
-print(DB_PASS_MYSQL)
+
 
 def main():
     """Program takes at least one arguments"""
 
-    #a_database = sys.argv[2]
-    #a_table = sys.argv[3]
 
     db_details = load_db_details(env)
     tables = get_tables(path = 'src/main/python/table_list.csv',table_list = 'all')
     for table in tables['table_name']:
         table_n = table
-
+    # reading the data from mysql
     data,columns = read_table(db_details,DB_USER=DB_USER_MYSQL, DB_PASS = DB_PASS_MYSQL ,table_name = table_n )
 
-    #db_details_write = load_db_details(env)['CUSTOMER_DB']
+    # loading data to postgres
     load_table(db_details = db_details  , DB_USER = DB_USER_POSTGRES, DB_PASS  = DB_PASS_POSTGRES,
                data=data, column_names =columns, table_name=table_n)
 
